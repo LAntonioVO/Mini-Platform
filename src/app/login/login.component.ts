@@ -24,12 +24,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit() {
+  submit():void{
     this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
       .then(response => {
         this.router.navigate(['/dashboard']);
       })
       .catch(err => this.error=true);
+  }
+
+  goSignUp():void{
+    this.router.navigate(['/signup']);
   }
 
   get email() {
