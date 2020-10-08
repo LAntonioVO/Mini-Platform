@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { hasClassName } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { User } from 'firebase';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class AuthService {
   login(email: string, password: string): Promise<any> {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
+
+  signUp(email: string, password: string): Promise<any>{
+    return this.afAuth.createUserWithEmailAndPassword(email,password);
+  }
+
   signOut(): Promise<any> {
     return this.afAuth.signOut();
   }
