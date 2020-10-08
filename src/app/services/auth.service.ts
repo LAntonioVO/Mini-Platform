@@ -14,11 +14,10 @@ export class AuthService {
       this.afAuth.user.subscribe(user=>{
         if(user){
           localStorage.setItem('user',JSON.stringify(user));
-          this.router.navigate(['/dashboard']);
+           this.router.navigate(['/dashboard']);
         }
         else{
           localStorage.setItem('user',null);
-          this.router.navigate(['/dashboard']);
         }
       });
   }

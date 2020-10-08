@@ -8,7 +8,6 @@
 
             <div *ngIf="(email.invalid && email.touched) || email.dirty">
                 <small *ngIf="email.errors?.required" class="text-danger">Primary email is required</small>
-                <!--question mark(?) is a safe navigation operator-->
                 <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email
                     address</small>
             </div>
