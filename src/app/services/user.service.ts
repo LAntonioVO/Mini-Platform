@@ -16,7 +16,7 @@ export class UserService {
     return this.db.collection(this.DB).doc(UID).set(user);
   }
   get():Observable<firebase.firestore.DocumentSnapshot>{
-    const index = localStorage.getItem('dbIndex');
+    const index:string = JSON.parse(localStorage.getItem('user')).uid;
     return this.db.collection(this.DB).doc(index).get();
   }
 }

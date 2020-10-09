@@ -5,10 +5,10 @@
     </button>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" routerLink="dashboard">Dashboard<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Profile</a>
+        <a class="nav-item nav-link" routerLink="dashboard">Dashboard<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" routerLink="profile">Profile</a>
         <a class="nav-item nav-link" href="#">Worked Hours</a>
-        <a class="nav-item nav-link" href="#">Skills</a>
+        <!-- <a class="nav-item nav-link" href="#">Skills</a> -->
         <a class="nav-item nav-link" (click)="signOut()">Sign Out</a>
       </div>
     </div>
