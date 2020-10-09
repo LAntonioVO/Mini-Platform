@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'firebase';
-import { UserData } from '../interfaces/user.interface';
+import { textChangeRangeIsUnchanged } from 'typescript';
+import { UserData, UserForm } from '../interfaces/user.interface';
+import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
@@ -21,7 +23,7 @@ export class SignupComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  constructor(private auth: AuthService,private userService:UserService) { }
+  constructor(private auth: AuthService,private userService:UserService,public alert:AlertService) { }
 
   ngOnInit(): void {
   }
@@ -32,13 +34,20 @@ export class SignupComponent implements OnInit {
         this.auth.signUp(this.signupForm.get('email').value, this.signupForm.get('password').value)
           .then(response =>{
             const UID:string = response.user.uid;
-            const formValues:any = this.signupForm.getRawValue();
+            const formValues:UserForm = this.signupForm.getRawValue();
             delete formValues.password;
             delete formValues.confirmPassword;
-            this.userService.create(formValues,UID);
+            const userData:UserData = formValues;
+            this.userService.create(userData,UID).then(_=>{
+              this.alert.success("User created")
+            });
           })
-          .catch(err => console.error("error" + err));
+          .catch(err => this.alert.error("An error has ocurred"));
+      }else{
+        this.alert.error("Password do not match");
       }
+    }else{
+      this.alert.error("Fill form correctly")
     }
   }
 }

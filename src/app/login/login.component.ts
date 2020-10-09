@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
       Validators.min(6)
     ])
   });
-  constructor(private authService: AuthService, public router:Router) { }
+  constructor(private authService: AuthService, public router:Router,public alert:AlertService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
       .then(response => {
         this.router.navigate(['/dashboard']);
       })
-      .catch(err => this.error=true);
+      .catch(err => this.alert.error("User or password invalid"));
   }
 
   goSignUp():void{
