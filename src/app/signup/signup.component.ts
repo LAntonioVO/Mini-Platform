@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'firebase';
 import { UserData } from '../interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -30,14 +31,11 @@ export class SignupComponent implements OnInit {
       if (this.signupForm.get('password').value === this.signupForm.get('confirmPassword').value) {
         this.auth.signUp(this.signupForm.get('email').value, this.signupForm.get('password').value)
           .then(response =>{
-            let userValue:UserData = {
-              email:this.signupForm.get('email').value,
-              firstName:this.signupForm.get('firstName').value,
-              lastName:this.signupForm.get('lastName').value,
-              dof:this.signupForm.get('dof').value,
-            }
             const UID:string = response.user.uid;
-            this.userService.create(userValue,UID);
+            const formValues:any = this.signupForm.getRawValue();
+            delete formValues.password;
+            delete formValues.confirmPassword;
+            this.userService.create(formValues,UID);
           })
           .catch(err => console.error("error" + err));
       }
