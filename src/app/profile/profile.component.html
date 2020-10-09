@@ -1,11 +1,31 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-12 d-flex justify-content-center">
             <p>Hola</p>
         </div>
         <div class="col-md-9 col-sm-12">
-            <div class="container-fluid">
-                <p>Profile here</p>
+            <div class="container">
+                <p *ngIf="loadingData">Loading data..</p>
+                <table *ngIf="this.user" class="table w-75 p-3">
+                    <tbody class="w-100 p-3">
+                        <tr>
+                            <td>Email</td>
+                            <td>{{this.user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td>{{this.user.firstName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>{{this.user.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Day of Birthday</td>
+                            <td>{{this.user.dof}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
                 <p>Skills here</p>
             </div>
         </div>
