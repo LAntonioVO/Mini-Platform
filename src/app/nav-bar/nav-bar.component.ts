@@ -7,7 +7,7 @@ import { AuthService } from "../services/auth.service";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
+  public isMenuCollapsed = true;
   constructor(private auth:AuthService, public router:Router) { }
 
   ngOnInit(): void {

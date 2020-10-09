@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserData } from '../interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +20,7 @@ export class SignupComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +29,16 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.valid) {
       if (this.signupForm.get('password').value === this.signupForm.get('confirmPassword').value) {
         this.auth.signUp(this.signupForm.get('email').value, this.signupForm.get('password').value)
-          .then(response => console.log("usuario creado" + response))
+          .then(response =>{
+            let userValue:UserData = {
+              email:this.signupForm.get('email').value,
+              firstName:this.signupForm.get('firstName').value,
+              lastName:this.signupForm.get('lastName').value,
+              dof:this.signupForm.get('dof').value,
+            }
+            const UID:string = response.user.uid;
+            this.userService.create(userValue,UID);
+          })
           .catch(err => console.error("error" + err));
       }
     }
