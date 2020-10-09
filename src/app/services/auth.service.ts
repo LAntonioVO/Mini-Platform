@@ -18,7 +18,11 @@ export class AuthService {
         }
         else{
           localStorage.setItem('user',null);
+<<<<<<< HEAD
           this.router.navigate(['/dashboard']);
+=======
+          localStorage.removeItem('dbIndex');
+>>>>>>> 7d4cd76... signup module finish
         }
       });
   }
@@ -26,6 +30,14 @@ export class AuthService {
   login(email: string, password: string): Promise<any> {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
+<<<<<<< HEAD
+=======
+
+  signUp(email: string, password: string):Promise<firebase.auth.UserCredential>{
+    return this.afAuth.createUserWithEmailAndPassword(email,password);
+  }
+
+>>>>>>> 7d4cd76... signup module finish
   signOut(): Promise<any> {
     return this.afAuth.signOut();
   }
