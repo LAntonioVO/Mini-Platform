@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { auth } from 'firebase';
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +7,6 @@ import { AuthGuardService } from './services/auth-guard.service';
 })
 export class AppComponent {
   title = 'bts-mini-platform';
-  isLogged:boolean;
-  // constructor(private authGuard:AuthGuardService){}
-
-
+  constructor(public auth: AuthService) {
+  }
 }
