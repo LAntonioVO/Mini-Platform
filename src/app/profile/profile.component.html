@@ -3,7 +3,7 @@
         <div class="col-md-3 col-sm-12 d-flex justify-content-center">
             <p>Hola</p>
         </div>
-        <div class="col-md-9 col-sm-12">
+        <div class="col-md-9 col-sm-12 d-flex">
             <div class="container">
                 <p *ngIf="loadingData">Loading data..</p>
                 <table *ngIf="this.user" class="table w-75 p-3">
@@ -25,7 +25,72 @@
                             <td>{{this.user.dof}}</td>
                         </tr>
                     </tbody>
-                  </table>
+                </table>
+                <!-- <form [formGroup]="userForm"  (ngSubmit)="updateProfile()">
+                    <div class="form-group">
+                        <input formControlName="firstName" type="text" class="form-control"
+                            placeholder="First Name*" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="lastName" type="text" class="form-control"
+                            placeholder="Last Name*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dof">Date of birth:</label>
+                        <input formControlName="dof" type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                            placeholder="Hobbies: listen to music, photograpy">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <input formControlName="email" type="email" class="form-control" placeholder="Email*"
+                            required>
+                    </div>
+                </form> -->
+                <ng-template #content let-modal let-form="formUser">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="userForm" (ngSubmit)="updateProfile()">
+                            <div class="form-group">
+                                <input formControlName="firstName" type="text" class="form-control"
+                                    placeholder="First Name*" required>
+                            </div>
+                            <div class="form-group">
+                                <input formControlName="lastName" type="text" class="form-control"
+                                    placeholder="Last Name*" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dof">Date of birth:</label>
+                                <input formControlName="dof" type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    placeholder="Hobbies: listen to music, photograpy">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <input formControlName="email" type="email" class="form-control" placeholder="Email*"
+                                    required>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button [disabled]="!this.userForm.valid" type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('save')">Save</button>
+                    </div>
+                </ng-template>
+                <button class="btn btn-sm btn-outline-primary" (click)="openEditor(content)">Edit Profile</button>
+                <hr>
                 <p>Skills here</p>
             </div>
         </div>

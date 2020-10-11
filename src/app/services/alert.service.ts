@@ -21,4 +21,15 @@ export class AlertService {
     const successAlert:AlertData = {message:message,type:"success"}
     this.subject.next(successAlert);
   }
+
+  info(message:string){
+    const successAlert:AlertData = {message:message,type:"info"}
+    this.subject.next(successAlert);
+  }
+
+  warning(message:string){
+    const successAlert:AlertData = {message:message,type:"warning"}
+    this.subject.next(successAlert);
+  }
+
 }
