@@ -58,4 +58,8 @@ export class SignupComponent implements OnInit {
       this.alert.error("Fill form correctly")
     }
   }
+
+  goLogIn():void{
+    this.router.navigate(['/login']);
+  }
 }
