@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'firebase';
 import { textChangeRangeIsUnchanged } from 'typescript';
 import { UserData, UserForm } from '../interfaces/user.interface';
@@ -23,9 +24,15 @@ export class SignupComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  constructor(private auth: AuthService,private userService:UserService,public alert:AlertService) { }
+  constructor(private auth: AuthService,
+    private userService:UserService,
+    public alert:AlertService, 
+    private router:Router) { }
 
   ngOnInit(): void {
+    if(this.auth.isLoggedIn){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   submit(): void {
@@ -39,6 +46,7 @@ export class SignupComponent implements OnInit {
             delete formValues.confirmPassword;
             const userData:UserData = formValues;
             this.userService.create(userData,UID).then(_=>{
+              this.router.navigate(['/dashboard']);          
               this.alert.success("User created")
             });
           })

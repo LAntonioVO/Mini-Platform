@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, public router:Router,public alert:AlertService) { }
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   submit():void{
