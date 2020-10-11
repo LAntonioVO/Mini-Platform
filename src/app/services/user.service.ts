@@ -20,6 +20,6 @@ export class UserService {
     return this.db.collection(this.DB).doc(this.index).get();
   }
   set(data:UserData):Promise<void>{
-    return this.db.collection(this.DB).doc(this.index).set(data);
+    return this.db.collection(this.DB).doc(this.index).update(data);
   }
 }

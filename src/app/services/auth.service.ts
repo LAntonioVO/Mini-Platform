@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { hasClassName } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { User } from 'firebase';
 import { promise } from 'protractor';
+import { threadId } from 'worker_threads';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,14 @@ export class AuthService {
 
   signOut(): Promise<any> {
     return this.afAuth.signOut();
+  }
+
+  // updateEmail(){
+  //   return this.afAuth.updateCurrentUser()
+  // }
+
+  resetPassword(email:string): Promise<void>{
+    return this.afAuth.sendPasswordResetEmail(email)
   }
 
   isLoggedIn():boolean{
