@@ -1,33 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { hasClassName } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { User } from 'firebase';
-import { promise } from 'protractor';
-import { threadId } from 'worker_threads';
-
+import { AlertService } from './alert.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   constructor(
-    public afAuth: AngularFireAuth,
-    public router: Router) {
-      this.afAuth.user.subscribe(user=>{
+    public afAuth: AngularFireAuth,public alert:AlertService,public router:Router,public ngZone:NgZone) {
+      console.log("se contruyo  ")
+      this.afAuth.authState.subscribe(user=>{
+        console.log("suscriptor");
         if(user){
           localStorage.setItem('user',JSON.stringify(user));
-          //  this.router.navigate(['/dashboard']);
+          if(this.router.routerState.snapshot.url=="/login"){
+            this.router.navigate(['/dashboard']);
+          }
         }
         else{
           localStorage.setItem('user',null);
-          // this.router.navigate(['/dashboard']);
           localStorage.removeItem('dbIndex');
         }
       });
   }
 
   login(email: string, password: string): Promise<any> {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then(res=>{
+        this.alert.success("Welcome back!");
+      })
+      .catch(err=>this.alert.error("Email or password incorrect"))
   }
 
   signUp(email: string, password: string):Promise<firebase.auth.UserCredential>{
@@ -38,16 +40,13 @@ export class AuthService {
     return this.afAuth.signOut();
   }
 
-  // updateEmail(){
-  //   return this.afAuth.updateCurrentUser()
-  // }
-
   resetPassword(email:string): Promise<void>{
     return this.afAuth.sendPasswordResetEmail(email)
   }
 
   isLoggedIn():boolean{
     const user = JSON.parse(localStorage.getItem('user'));
-    return user!==null;
+    console.log(user!=null);
+    return user!=null;
   }
 }

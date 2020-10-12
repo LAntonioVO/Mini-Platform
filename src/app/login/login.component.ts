@@ -20,20 +20,13 @@ export class LoginComponent implements OnInit {
       Validators.min(6)
     ])
   });
-  constructor(private authService: AuthService, public router:Router,public alert:AlertService) { }
+  constructor(private authService: AuthService,private router:Router) { }
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn){
-      this.router.navigate(['/dashboard']);
-    }
   }
 
   submit():void{
-    this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
-      .then(response => {
-        this.router.navigate(['/dashboard']);
-      })
-      .catch(err => this.alert.error("User or password invalid"));
+    this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value);
   }
 
   goSignUp():void{
