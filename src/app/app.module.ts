@@ -17,6 +17,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './alert/alert.component';
+import { SkillsComponent } from './skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlertComponent } from './alert/alert.component';
     NavBarComponent,
     SignupComponent,
     ProfileComponent,
-    AlertComponent
+    AlertComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
