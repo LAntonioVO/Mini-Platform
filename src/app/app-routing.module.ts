@@ -6,9 +6,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
-  {path:'',component:DashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
-  {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
+  {path:'login',component:LoginComponent},
+  {path:'',redirectTo:'dashboard',pathMatch:"full",canActivate:[AuthGuard]},
   {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]}
 ];
