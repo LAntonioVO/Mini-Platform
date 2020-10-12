@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
-    if(this.auth.isLoggedIn){
+    if(this.auth.isLoggedIn()){
       this.router.navigate(['/dashboard']);
     }
   }
