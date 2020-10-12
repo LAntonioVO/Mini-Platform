@@ -8,9 +8,7 @@ import { AlertService } from './alert.service';
 export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,public alert:AlertService,public router:Router,public ngZone:NgZone) {
-      console.log("se contruyo  ")
       this.afAuth.authState.subscribe(user=>{
-        console.log("suscriptor");
         if(user){
           localStorage.setItem('user',JSON.stringify(user));
           if(this.router.routerState.snapshot.url=="/login"){
@@ -46,7 +44,6 @@ export class AuthService {
 
   isLoggedIn():boolean{
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user!=null);
     return user!=null;
   }
 }
