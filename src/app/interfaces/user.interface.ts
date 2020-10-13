@@ -3,6 +3,7 @@ export interface UserData{
     lastName:string,
     dof:Date,
     email:string,
+    skills?:Array<any>
 }
 
 export interface UserForm{

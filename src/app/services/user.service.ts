@@ -23,7 +23,7 @@ export class UserService {
   get():Observable<firebase.firestore.DocumentSnapshot>{
     return this.db.collection(this.DB).doc(this.index).get();
   }
-  set(data:UserData):Promise<void>{
+  set(data:Partial<UserData>):Promise<void>{
     return this.db.collection(this.DB).doc(this.index).update(data);
   }
 }
