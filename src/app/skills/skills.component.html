@@ -1,1 +1,22 @@
-<p>skills works!</p>
+<div class="content">
+    <table class="table table-responsive">
+        <thead class="text-center">
+            <tr>
+                <th>Skill</th>
+                <th>Learned</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let skill of data; index as index">
+                <td>{{skill.skill}}</td>
+                <td>{{skill.date}}</td>
+                <td>{{skill.price|currency}}</td>
+                <td>{{skill.description}}</td>
+                <td><button class="btn btn-sm btn-outline-secondary" (click)="editSkill(skill)">Editar</button></td>
+                <td><button class="btn btn-sm btn-outline-danger" (click)="editSkill(skill)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
