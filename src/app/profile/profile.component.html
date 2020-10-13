@@ -60,7 +60,7 @@
                     Profile</button>
                 <hr>
 
-                <app-skills *ngIf="user" [skills]="user.skills">Loading skills..</app-skills>
+                <app-skills *ngIf="user" (updateUserSkills)="updateSkills($event)" [skills]="user.skills">Loading skills..</app-skills>
             </div>
         </div>
     </div>

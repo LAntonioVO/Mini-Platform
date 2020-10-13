@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit {
             delete formValues.password;
             delete formValues.confirmPassword;
             const userData:UserData = formValues;
+            userData.skills=[];
             this.userService.create(userData,UID).then(_=>{
               this.router.navigate(['/dashboard']);          
               this.alert.success("User created")

@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
       finalize(() => { this.loadingData = false })
     ).subscribe(response => {
       this.user = response.data() as UserData;
-      console.log(this.user);
     });
   }
 
@@ -52,6 +51,7 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     let userData: UserData = this.userForm.getRawValue();
     userData.email = this.user.email;
+    userData.skills = this.user.skills;
     this.userService.set(userData)
       .then(_ => {
         this.alert.success("Profile updating success!");
@@ -60,5 +60,9 @@ export class ProfileComponent implements OnInit {
       .catch(err => {
         this.alert.error("Error updating profile");
       });
+  }
+
+  updateSkills(skills) {
+    this.user.skills = skills;
   }
 }

@@ -38,7 +38,7 @@
                 <th>Learned</th>
                 <th>Price</th>
                 <th>Description</th>
-                <th colspan="2"><button class="btn btn-sm btn-outline-success" (click)="addSkill(content)">Add
+                <th colspan="2"><button class="btn btn-sm btn-outline-success" (click)="openEditor(content,'add')">Add
                         Skill</button></th>
             </tr>
         </thead>
@@ -48,7 +48,7 @@
                 <td>{{skill.learned}}</td>
                 <td>{{skill.price|currency}}</td>
                 <td>{{skill.description}}</td>
-                <td><button class="btn btn-sm btn-outline-secondary" (click)="editSkill(skill)">Edit</button></td>
+                <td><button class="btn btn-sm btn-outline-secondary"  (click)="openEditor(content,'edit',skill)">Edit</button></td>
                 <td><button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill)">Delete</button></td>
             </tr>
         </tbody>
