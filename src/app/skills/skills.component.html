@@ -1,4 +1,35 @@
 <div class="content">
+
+    <ng-template #content let-modal let-form="skillForm">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Skill</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="skillForm">
+                <div class="form-group">
+                    <input formControlName="skill" type="text" class="form-control" placeholder="Skill name*" required>
+                </div>
+                <div class="form-group">
+                    <label for="learned">Learned*:</label>
+                    <input formControlName="learned" type="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <input formControlName="price"  type="number" class="form-control" placeholder="Price(USD) *" min="0" required>
+                </div>
+                <div class="form-group">
+                    <input formControlName="description" type="text" class="form-control" placeholder="Skill description*" multiple required>
+                </div>
+                <hr>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" [disabled]="!skillForm.valid" class="btn btn-outline-dark" (click)="modal.close('save')">Save</button>
+        </div>
+    </ng-template>
+
     <h3>Skills</h3>
     <table class="table table-responsive">
         <thead class="text-center">
@@ -7,16 +38,18 @@
                 <th>Learned</th>
                 <th>Price</th>
                 <th>Description</th>
+                <th colspan="2"><button class="btn btn-sm btn-outline-success" (click)="addSkill(content)">Add
+                        Skill</button></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let skill of skills;">
                 <td>{{skill.skill}}</td>
-                <td>{{skill.date}}</td>
+                <td>{{skill.learned}}</td>
                 <td>{{skill.price|currency}}</td>
                 <td>{{skill.description}}</td>
-                <td><button class="btn btn-sm btn-outline-secondary" (click)="editSkill(skill)">Editar</button></td>
-                <td><button class="btn btn-sm btn-outline-danger" (click)="editSkill(skill)">Delete</button></td>
+                <td><button class="btn btn-sm btn-outline-secondary" (click)="editSkill(skill)">Edit</button></td>
+                <td><button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill)">Delete</button></td>
             </tr>
         </tbody>
     </table>

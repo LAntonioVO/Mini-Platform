@@ -1,26 +1,45 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { UserService } from '../services/user.service';
+import { UserData} from '../interfaces/user.interface'
+import { NgbModal } from "@ng-bootstrap//ng-bootstrap";
+import { AlertService } from '../services/alert.service';
+import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent implements OnInit {
-  data = [
-    { skill: "javascript", date: "12-12-1998", price: "34", description: "delicious" },
-    {skill:"javascript",date:"12-12-1998",price:"36",description:"delicious component with a mayor loremaksdjhf aslkdjhasldkfjhsa dlfkjsahdf"},
-    {skill:"javascript",date:"12-12-1998",price:"37",description:"delicious"},
-    {skill:"javascript",date:"12-12-1998",price:"38",description:"delicious"},
-    {skill:"javascript",date:"12-12-1998",price:"35",description:"delicious"},
-  ]
-  @Input() skills:any;
+  @Input() skills:Array<object>;
+  skillForm:FormGroup = new FormGroup({
+    skill:new FormControl('',[Validators.required]),
+    learned:new FormControl('',[Validators.required]),
+    price:new FormControl('',[Validators.required,Validators.min(0)]),
+    description:new FormControl('',[Validators.required])
+  });
 
-  constructor() { }
+  constructor(private userService: UserService,public modal:NgbModal,public alert:AlertService) { }
 
   ngOnInit(): void {
-    console.log(this.skills);
+    // this.userService.set({skills:["javascript"]});
+  }
+  addSkill(content){
+    this.modal.open(content).result.then((result) => {
+      let dataSkill:object=this.skillForm.getRawValue();
+      this.userService.set({skills:[...this.skills,dataSkill]})
+        .then(_=>{
+          this.alert.success("Skills updated")
+          this.skills.push(dataSkill);
+        })
+        .catch(err=>this.alert.error("Error updating skills"));
+    }, (reason) => {
+      this.alert.info("Add Skill Cancelled");
+    });
   }
   editSkill(skill){
     console.log(skill);
+  }
+  deleteSkill(skill){
+    console.log(this.skills.indexOf(skill));
   }
 }
