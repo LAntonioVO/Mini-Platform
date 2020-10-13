@@ -5,6 +5,7 @@
         </div>
         <div class="col-md-9 col-sm-12 d-flex">
             <div class="container">
+                <h3>Profile data</h3>
                 <p *ngIf="loadingData">Loading data..</p>
                 <table *ngIf="this.user" class="table w-75 p-3">
                     <tbody class="w-100 p-3">
@@ -58,7 +59,8 @@
                 <button *ngIf="user" class="btn btn-sm btn-outline-primary" (click)="openEditor(content)">Edit
                     Profile</button>
                 <hr>
-                <app-skills>Loading skills..</app-skills>
+
+                <app-skills *ngIf="user" [skills]="user.skills">Loading skills..</app-skills>
             </div>
         </div>
     </div>

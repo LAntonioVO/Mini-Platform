@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
       finalize(() => { this.loadingData = false })
     ).subscribe(response => {
       this.user = response.data() as UserData;
+      console.log(this.user);
     });
   }
 

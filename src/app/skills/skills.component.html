@@ -1,4 +1,5 @@
 <div class="content">
+    <h3>Skills</h3>
     <table class="table table-responsive">
         <thead class="text-center">
             <tr>
@@ -9,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let skill of data; index as index">
+            <tr *ngFor="let skill of skills;">
                 <td>{{skill.skill}}</td>
                 <td>{{skill.date}}</td>
                 <td>{{skill.price|currency}}</td>
