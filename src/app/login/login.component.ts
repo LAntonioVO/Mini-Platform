@@ -9,7 +9,7 @@ import { AlertService } from '../services/alert.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  error:boolean=false;
+  error:Array<string>;
 
   loginForm = new FormGroup({
     email: new FormControl('', [
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl('', [
       Validators.required,
-      Validators.min(6)
+      Validators.minLength(6)
     ])
   });
   constructor(private authService: AuthService,private router:Router) { }
@@ -35,5 +35,8 @@ export class LoginComponent implements OnInit {
 
   get email() {
     return this.loginForm.get('email');
+  }
+  get password(){
+    return this.loginForm.get('password');
   }
 }
