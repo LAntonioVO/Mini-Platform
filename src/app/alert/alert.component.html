@@ -1,3 +1,5 @@
-<ngb-alert *ngIf="alert" [type]="alert.type">
+<!-- <ngb-alert *ngIf="alert" [type]="alert.type">
+</ngb-alert> -->
+<div class="alert alert-custom"  *ngIf="alert"  [class]="'alert-'+alert.type" role="alert">
     <span [innerHTML]="alert.message"></span>
-</ngb-alert>
+</div>

@@ -1,0 +1,19 @@
+@media screen and (min-width:800px){
+    .alert-custom{
+        width: 30%;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+}
+@media screen and (max-width:800px){
+    .alert-custom{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+    }
+}
+.alert-custom{
+    margin: 0;
+}
