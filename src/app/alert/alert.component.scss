@@ -1,7 +1,8 @@
 @media screen and (min-width:800px){
     .alert-custom{
         width: 30%;
-        position: absolute;
+        position: fixed;
+        top:0;
         right: 0;
         z-index: 1;
     }

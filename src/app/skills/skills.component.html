@@ -17,7 +17,8 @@
                     <input formControlName="learned" type="date" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <input formControlName="price"  type="number" class="form-control" placeholder="Price(USD) *" min="0" required>
+                    <!-- <input formControlName="price"  type="number" class="form-control" placeholder="Price(USD) *" min="0" required> -->
+                    <app-input-currency [money]="money" (sendMoney)="updateSkillPrice($event)"></app-input-currency>
                 </div>
                 <div class="form-group">
                     <input formControlName="description" type="text" class="form-control" placeholder="Skill description*" multiple required>

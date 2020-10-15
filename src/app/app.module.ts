@@ -20,6 +20,7 @@ import { AlertComponent } from './alert/alert.component';
 import { SkillsComponent } from './skills/skills.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { InputPhoneComponent } from './input-phone/input-phone.component';
+import { InputCurrencyComponent } from './input-currency/input-currency.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InputPhoneComponent } from './input-phone/input-phone.component';
     ProfileComponent,
     AlertComponent,
     SkillsComponent,
-    InputPhoneComponent
+    InputPhoneComponent,
+    InputCurrencyComponent
   ],
   imports: [
     BrowserModule,

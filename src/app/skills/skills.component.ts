@@ -83,4 +83,14 @@ export class SkillsComponent implements OnInit {
         .catch(err => this.alert.error("Error deleting skill"));
     }
   }
+
+  updateSkillPrice(money){
+    this.skillForm.patchValue({
+      price:money
+    });
+  }
+
+  get money(){
+    return this.skillForm.get('price').value;
+  }
 }
