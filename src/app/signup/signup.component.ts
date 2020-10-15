@@ -62,6 +62,14 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  updatePhone(phone:string){
+    console.log(phone);
+    this.signupForm.patchValue({
+      phone:phone
+    });
+    console.log(this.signupForm.getRawValue());
+  }
+
   goLogIn(): void {
     this.router.navigate(['/login']);
   }

@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './alert/alert.component';
 import { SkillsComponent } from './skills/skills.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { InputPhoneComponent } from './input-phone/input-phone.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     SignupComponent,
     ProfileComponent,
     AlertComponent,
-    SkillsComponent
+    SkillsComponent,
+    InputPhoneComponent
   ],
   imports: [
     BrowserModule,
