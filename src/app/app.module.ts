@@ -10,7 +10,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -18,6 +18,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './alert/alert.component';
 import { SkillsComponent } from './skills/skills.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { SkillsComponent } from './skills/skills.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

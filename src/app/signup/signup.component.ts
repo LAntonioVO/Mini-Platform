@@ -15,22 +15,24 @@ import { UserService } from '../services/user.service';
 })
 export class SignupComponent implements OnInit {
 
+  phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   signupForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    dof: new FormControl(''),
+    phone: new FormControl('',[Validators.required]),
+    dof: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
   constructor(private auth: AuthService,
-    private userService:UserService,
-    public alert:AlertService, 
-    private router:Router) { }
+    private userService: UserService,
+    public alert: AlertService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    if(this.auth.isLoggedIn()){
+    if (this.auth.isLoggedIn()) {
       this.router.navigate(['/dashboard']);
     }
   }
@@ -39,28 +41,32 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.valid) {
       if (this.signupForm.get('password').value === this.signupForm.get('confirmPassword').value) {
         this.auth.signUp(this.signupForm.get('email').value, this.signupForm.get('password').value)
-          .then(response =>{
-            const UID:string = response.user.uid;
-            const formValues:UserForm = this.signupForm.getRawValue();
+          .then(response => {
+            const UID: string = response.user.uid;
+            const formValues: UserForm = this.signupForm.getRawValue();
             delete formValues.password;
             delete formValues.confirmPassword;
-            const userData:UserData = formValues;
-            userData.skills=[];
-            this.userService.create(userData,UID).then(_=>{
-              this.router.navigate(['/dashboard']);          
+            const userData: UserData = formValues;
+            userData.skills = [];
+            this.userService.create(userData, UID).then(_ => {
+              this.router.navigate(['/dashboard']);
               this.alert.success("User created")
             });
           })
           .catch(err => this.alert.error("An error has ocurred"));
-      }else{
-        this.alert.error("Password do not match");
+      } else {
+        this.alert.error("Passwords does not match");
       }
-    }else{
+    } else {
       this.alert.error("Fill form correctly")
     }
   }
 
-  goLogIn():void{
+  goLogIn(): void {
     this.router.navigate(['/login']);
+  }
+
+  get signupFormControl() {
+    return this.signupForm.controls;
   }
 }

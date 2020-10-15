@@ -3,20 +3,42 @@
     <div class="signup-form">
         <form [formGroup]="signupForm" (ngSubmit)="submit()">
         <h2 class="text-center">Sign Up</h2>
+        <small *ngIf="signupFormControl.firstName.invalid && (signupFormControl.firstName.dirty || signupFormControl.firstName.touched)" class="text-danger">
+            First Name is required
+        </small>
         <div class="form-group">
             <input formControlName="firstName" type="text" class="form-control" placeholder="First Name*" required>
         </div>
+
+        <small *ngIf="signupFormControl.lastName.invalid && (signupFormControl.lastName.dirty || signupFormControl.lastName.touched)" class="text-danger">
+            Last Name is required
+        </small>
         <div class="form-group">
             <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name*" required>
         </div>
+        <small *ngIf="signupFormControl.dof.invalid && (signupFormControl.dof.dirty || signupFormControl.dof.touched)" class="text-danger">
+            Date of Birth if required
+        </small>
         <div class="form-group">
             <label for="dof">Date of birth:</label>
             <input formControlName="dof" type="date" class="form-control">
         </div>
+        <small *ngIf="signupFormControl.phone.invalid && (signupFormControl.phone.dirty || signupFormControl.phone.touched)" class="text-danger">
+            Phone number is required {{signupFormControl.phone.value}}
+        </small>
+        <div class="form-group">
+            <input [textMask]="{mask:phoneMask,guide:false}" formControlName="phone" type="text" class="form-control" placeholder="Phone Number (012)-345-678*" required>
+        </div>
         <hr>
+        <small *ngIf="signupFormControl.email.invalid && (signupFormControl.email.dirty || signupFormControl.email.touched)" class="text-danger">
+            Please provide a valid email address
+        </small>
         <div class="form-group">
             <input formControlName="email" type="email" class="form-control" placeholder="Email*" required>
         </div>
+        <small *ngIf="signupFormControl.password.invalid && (signupFormControl.password.dirty || signupFormControl.password.touched)" class="text-danger">
+            Password must be min 6 characters lenght
+        </small>
         <div class="form-group">
             <input formControlName="password" type="password" class="form-control" placeholder="Password*" minlength="6" required>
         </div>
