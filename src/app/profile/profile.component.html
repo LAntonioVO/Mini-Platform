@@ -25,6 +25,11 @@
                             <td>Day of Birthday</td>
                             <td>{{this.user.dof}}</td>
                         </tr>
+
+                        <tr>
+                            <td>Phone Number</td>
+                            <td>{{this.user.phone}}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <ng-template #content let-modal let-form="formUser">
@@ -47,6 +52,9 @@
                             <div class="form-group">
                                 <label for="dof">Date of birth:</label>
                                 <input formControlName="dof" type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <app-input-phone [phone]="user.phone" (sendPhone)="updateFormPhone($event)"></app-input-phone>
                             </div>
                             <hr>
                         </form>

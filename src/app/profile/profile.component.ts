@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     dof: new FormControl(''),
+    phone:new FormControl('',[Validators.required])
   });
 
 
@@ -39,7 +40,8 @@ export class ProfileComponent implements OnInit {
     this.userForm.setValue({
       firstName: this.user.firstName,
       lastName: this.user.lastName,
-      dof: this.user.dof
+      dof: this.user.dof,
+      phone:this.user.phone
     });
     this.modalService.open(content).result.then((result) => {
       this.updateProfile();
@@ -64,5 +66,10 @@ export class ProfileComponent implements OnInit {
 
   updateSkills(skills) {
     this.user.skills = skills;
+  }
+  updateFormPhone(phone:string):void{
+    this.userForm.patchValue({
+      phone:phone
+    })
   }
 }
