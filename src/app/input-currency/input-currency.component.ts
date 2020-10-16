@@ -12,9 +12,9 @@ export class InputCurrencyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.mask = this.moneyMask(`${this.money}`);
+    this.mask = this.moneyMask(this.money.toString());
   }
-  maskInput(event){
+  maskInput(event):void{
     this.mask = this.moneyMask(event.target.value);
     this.money = this.moneyUnmask(this.mask);
     this.sendMoney.emit(this.money);
@@ -27,7 +27,7 @@ export class InputCurrencyComponent implements OnInit {
   moneyUnmask(maskedMoney:string):number{
     maskedMoney = maskedMoney.replace(/^0/, "");
     maskedMoney = maskedMoney.replace(/\D/g, "");
-    return +maskedMoney
+    return parseFloat(maskedMoney); 
   }
 
 }
