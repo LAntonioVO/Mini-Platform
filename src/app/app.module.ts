@@ -21,6 +21,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { InputPhoneComponent } from './input-phone/input-phone.component';
 import { InputCurrencyComponent } from './input-currency/input-currency.component';
+import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InputCurrencyComponent } from './input-currency/input-currency.componen
     AlertComponent,
     SkillsComponent,
     InputPhoneComponent,
-    InputCurrencyComponent
+    InputCurrencyComponent,
+    PhonePipe
   ],
   imports: [
     BrowserModule,
