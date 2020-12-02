@@ -39,12 +39,21 @@
                 <th>Learned</th>
                 <th>Price</th>
                 <th>Description</th>
-                <th colspan="2"><button class="btn btn-sm btn-outline-success" (click)="openEditor(content,'add')">Add
-                        Skill</button></th>
+                <th><button class="btn btn-sm btn-outline-success" (click)="openEditor(content,'add')">Add
+                        Skill</button>
+                </th>
+                <th>
+                    <label for="filter">Filter +10 </label>
+                    <input type="checkbox" name="filter" id="filter" appFilterDisplay>
+                </th>
+                <th>
+                    <label for="filter">Filter Color </label>
+                    <input type="checkbox" name="filter" id="filter" (click)="color=!color">
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let skill of skills;">
+            <tr *ngFor="let skill of skills;" class="skill-row" [ngClass]="(color&&skill.price>5)?'bg-success':''">
                 <td>{{skill.skill}}</td>
                 <td>{{skill.learned}}</td>
                 <td>{{skill.price|currency}}</td>

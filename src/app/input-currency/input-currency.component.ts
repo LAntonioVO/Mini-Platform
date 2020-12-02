@@ -12,6 +12,7 @@ export class InputCurrencyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(this.money)
     this.mask = this.moneyMask(this.money.toString());
   }
   maskInput(event):void{

@@ -12,6 +12,7 @@ import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms"
 export class SkillsComponent implements OnInit {
   @Input() skills: Array<object>;
   @Output() updateUserSkills = new EventEmitter();
+  color:boolean = false;
   skillForm: FormGroup = new FormGroup({
     skill: new FormControl('', [Validators.required]),
     learned: new FormControl('', [Validators.required]),

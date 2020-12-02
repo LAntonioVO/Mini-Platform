@@ -22,6 +22,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { InputPhoneComponent } from './input-phone/input-phone.component';
 import { InputCurrencyComponent } from './input-currency/input-currency.component';
 import { PhonePipe } from './pipes/phone.pipe';
+import { FilterDisplayDirective } from './directives/filter-display.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     SkillsComponent,
     InputPhoneComponent,
     InputCurrencyComponent,
-    PhonePipe
+    PhonePipe,
+    FilterDisplayDirective
   ],
   imports: [
     BrowserModule,
